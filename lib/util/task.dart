@@ -39,10 +39,10 @@ class TaskDuration {
   const TaskDuration(this.period, this.repeat, this.startedAt);
 
   /// 開始から終了までの範囲は？
-  Duration get range => period * repeat;
+  Duration get total => period * repeat;
 
   /// いつ終了する予定？
-  DateTime get endsAt => startedAt.add(range);
+  DateTime get endsAt => startedAt.add(total);
 }
 
 class TaskProgress {

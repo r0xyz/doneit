@@ -52,7 +52,7 @@ class _TaskListWidget extends State<TaskListWidget> {
     ),
     Task(
       title: "腹筋をする",
-      period: Duration(days: 1),
+      period: Duration(seconds: 5),
       volume: 3,
     ),
   ];
@@ -92,11 +92,11 @@ class _TaskListWidget extends State<TaskListWidget> {
           final taskIndex = task.dateFor(DateTime.now());
 
           // デバッグ用
-          print("${task.title} => ${task.doneList}");
+          print("${task.title}");
 
           // アイコン
           final icon = Icon(
-            task.isComplete()
+            task.done
                 ? Icons.check
                 : (taskIndex.isDone()
                     ? Icons.assignment_turned_in
@@ -107,9 +107,9 @@ class _TaskListWidget extends State<TaskListWidget> {
             child: ListTile(
               enabled: taskIndex.canDone(),
               leading: icon,
-              title: Text("${task.every()}、${task.title}"),
+              title: Text("${task.every}、${task.title}"),
               subtitle: Text(
-                  "${task.percent()}% 完了 (${task.doneList.length} / ${task.volume})"),
+                  "${task.progress}% 完了 (${task.completed} / ${task.volume}) / ${task.succeed} 達成 - ${task.failed} 失敗"),
               onTap: () {
                 setState(() => taskIndex.done());
               },

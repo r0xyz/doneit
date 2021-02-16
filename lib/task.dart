@@ -54,30 +54,39 @@ class TaskIndex {
 }
 
 class Task {
-  // 作成日時
-  var createdAt = DateTime.now();
   // やること
   final String title;
   // やる頻度
   final Duration period;
   // やる回数
   final int volume;
-  // 完了済み
-  var doneList = <bool>[];
+
+  // 作成日時
+  var _createdAt = DateTime.now();
+  // 達成済み
+  var _checks = <bool>[];
 
   Task({this.title, this.period, this.volume});
 
-  // 読みやすい頻度
-  String every() => period._momentEvery();
+  // 達成した回数
+  int get completed => _checks.length;
+  // 成功した回数
+  int get succeed => _checks.where((x) => x).length;
+  // 失敗した回数
+  int get failed => _checks.length - succeed;
+
   // 進捗
-  int percent() => (doneList.length / volume * 100).toInt();
-  // 達成したかどうか
-  bool isComplete() => doneList.length == volume;
+  int get progress => (completed / volume * 100).toInt();
+  // 完了したかどうか
+  bool get done => completed >= volume;
+
+  // やる頻度をよみやすく
+  String get every => period._momentEvery();
 
   // インデックス
   TaskIndex dateFor(DateTime date) {
-    final diff = date.difference(createdAt);
+    final diff = date.difference(_createdAt);
     final index = diff.inMicroseconds ~/ period.inMicroseconds;
-    return TaskIndex(volume: volume, doneList: doneList, index: index);
+    return TaskIndex(volume: volume, doneList: _checks, index: index);
   }
 }

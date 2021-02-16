@@ -1,15 +1,8 @@
-class _Format {
-  final int value;
-  final String suffix;
-
-  const _Format([this.value = 0, this.suffix = ""]);
-}
-
 class DurationFormat {
   final Duration duration;
   final bool every;
 
-  const DurationFormat(this.duration, {this.every});
+  const DurationFormat(this.duration, {this.every = false});
 
   @override
   String toString() {
@@ -22,4 +15,11 @@ class DurationFormat {
     final fmt = formats.firstWhere((x) => x.value > 0, orElse: () => _Format());
     return every ? (fmt.value == 1 ? "毎${fmt.suffix}" : "${fmt.value}${fmt.suffix}ごと") : "${fmt.value}${fmt.suffix}";
   }
+}
+
+class _Format {
+  final int value;
+  final String suffix;
+
+  const _Format([this.value = 0, this.suffix = ""]);
 }

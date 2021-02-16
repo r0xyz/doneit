@@ -10,6 +10,7 @@ import 'package:doneit/task.dart';
 // TODO: タップで新しいページを作る
 // TODO: だんだんキツくなるタスクの作成
 // TODO: 確認の通知
+// TODO: 達成しなかった場合に消すか待機するか
 
 class App extends StatelessWidget {
   final _title = "鉄の掟";
@@ -19,7 +20,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: _title,
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        brightness: Brightness.dark,
       ),
       home: TaskListWidget(
         title: _title,
@@ -75,8 +76,14 @@ class _TaskListWidget extends State<TaskListWidget> {
     return Scaffold(
       // 上部のバー
       appBar: AppBar(
-        leading: Icon(Icons.work),
         title: Text(widget.title),
+        centerTitle: true,
+        toolbarHeight: 100,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(60),
+          ),
+        ),
       ),
       // 一覧表示
       body: ListView.separated(
@@ -141,7 +148,7 @@ class _TaskListWidget extends State<TaskListWidget> {
       // TODO: 追加ボタン
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        tooltip: 'タスクを追加',
+        tooltip: '掟を追加',
         child: Icon(Icons.add),
       ),
     );

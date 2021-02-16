@@ -1,0 +1,41 @@
+{
+  "type": "doughnut",
+  "data": {
+    "datasets": [
+      {
+        "data": [
+          "$SUCCEED_COUNT",
+          "$FAILED_COUNT"
+        ],
+        "backgroundColor": [
+          "rgb(74, 255, 88)",
+          "rgb(255, 99, 132)"
+        ]
+      }
+    ]
+  },
+  "options": {
+    "rotation": Math.PI,
+    "circumference": Math.PI,
+    "cutoutPercentage": 75,
+    "plugins": {
+      "doughnutlabel": {
+        "labels": [
+          {
+            "text": "\n達成率",
+            "color": "#aaa",
+            "font": {
+              "size": "25"
+            }
+          },
+          {
+            "text": "\n$SUCCEED_RATE%",
+            "font": {
+              "size": "40"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

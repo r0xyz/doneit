@@ -58,7 +58,7 @@ class TaskProgress {
   int get completedCount => _data.length;
 
   /// 達成率は？
-  int get completedRate => length <= 0 ? 0 : (completedCount / length * 100).toInt();
+  double get completedRate => length <= 0 ? 0 : completedCount / length;
 
   /// 失敗した回数は？
   int get failedCount => _data.where((x) => x == 0).length;
@@ -67,5 +67,5 @@ class TaskProgress {
   int get succeedCount => _data.where((x) => x == 1).length;
 
   /// 成功率は？
-  int get succeedRate => completedCount <= 0 ? 0 : (succeedCount / completedCount * 100).toInt();
+  double get succeedRate => completedCount <= 0 ? 0 : succeedCount / completedCount;
 }

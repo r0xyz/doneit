@@ -60,7 +60,14 @@ class TaskWidget extends StatelessWidget {
       body: ListView(children: [
         Container(
           height: MediaQuery.of(context).size.height * 0.3,
-          color: Colors.teal,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              stops: [0.1, 0.3, 0.5, 0.7, 0.9],
+              colors: [Colors.yellow, Colors.red, Colors.purple, Colors.indigo, Colors.teal],
+            ),
+          ),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text("${task.title} を ${DurationFormat(task.duration.period, every: true)} やります！", style: Theme.of(context).textTheme.headline6),
           ]),

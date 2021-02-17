@@ -13,7 +13,7 @@ class DurationFormat {
       _Format(duration.inSeconds, "秒"),
     ];
     final fmt = formats.firstWhere((x) => x.value > 0, orElse: () => _Format());
-    return every ? (fmt.value == 1 ? "毎${fmt.suffix}" : "${fmt.value}${fmt.suffix}ごと") : "${fmt.value}${fmt.suffix}";
+    return every ? (fmt.value == 1 ? "毎${fmt.suffix}" : "${fmt.value}${fmt.suffix}ごとに") : "${fmt.value}${fmt.suffix}";
   }
 }
 

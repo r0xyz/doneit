@@ -68,4 +68,7 @@ class TaskProgress {
 
   /// 成功率は？
   double get succeedRate => completedCount <= 0 ? 0 : succeedCount / completedCount;
+
+  /// 完了している？
+  bool get done => completedCount >= length;
 }

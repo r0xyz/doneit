@@ -28,7 +28,7 @@ class _TaskListWidget extends State<TaskListWidget> {
         itemBuilder: (context, index) {
           final task = _tasks.elementAt(index);
           return ListTile(
-            leading: Icon(Icons.assignment),
+            leading: Icon(task.progress.done ? Icons.check : Icons.assignment),
             title: Text("${task.title} を ${DurationFormat(task.duration.period, every: true)} やります！"),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => TaskWidget(task)));

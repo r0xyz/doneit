@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:doneit/util/task.dart';
 import "package:doneit/util/duration_format.dart";
+import "package:doneit/widget/task.dart";
 
 class TaskListWidget extends StatefulWidget {
   @override

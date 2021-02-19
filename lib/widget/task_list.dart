@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:doneit/util/task.dart';
 import "package:doneit/util/duration_format.dart";
-import "package:doneit/widget/task.dart";
 
 class TaskListWidget extends StatefulWidget {
   @override
@@ -28,14 +27,20 @@ class _TaskListWidget extends State<TaskListWidget> {
         itemBuilder: (context, index) {
           final task = _tasks.elementAt(index);
           return ListTile(
-            leading: Icon(task.progress.done ? Icons.check : Icons.assignment),
-            title: Text("${task.title} を ${DurationFormat(task.duration.period, every: true)} やります！"),
+            leading: Padding(
+              padding: EdgeInsets.symmetric(vertical: 16),
+              child: Icon(task.progress.done ? Icons.check : Icons.assignment),
+            ),
+            title: Padding(
+              padding: EdgeInsets.symmetric(vertical: 16),
+              child: Text("${task.title} を ${DurationFormat(task.duration.period, every: true)} やります！"),
+            ),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => TaskWidget(task)));
             },
           );
         },
-        separatorBuilder: (context, index) => Divider(),
+        separatorBuilder: (context, index) => Divider(height: 0),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
